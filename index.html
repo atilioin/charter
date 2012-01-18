@@ -1,0 +1,244 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Charter UI - Google Chart Api UI - QR Code Generator</title>
+	<META NAME="Title" CONTENT="Google Chart Api UI">
+	<META NAME="Description" CONTENT="Friendly UI to use Google Chart Api. Allows generation of QR codes for now. Generation of dynamic icons and formulas in future versions">
+	<META NAME="Keywords" CONTENT="qr code generator, qr code, google chart api">
+	<META NAME="Language" CONTENT="English">
+	<META NAME="Revisit" CONTENT="1 day">
+	<META NAME="Distribution" CONTENT="Global">
+	<link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css" rel="Stylesheet" />
+	<link rel="stylesheet" href="farbtastic.css" type="text/css" />
+	<script src="https://www.google.com/jsapi?key=ABQIAAAAw8ctUj_tC2zVWs0zqGLhrBST2yNqgneP59yq_A9iLMHxfT2EFBRnceqU1J_m-63pkyh_6rvmBHvIfQ" type="text/javascript"></script>
+    <script type="text/javascript" src="farbtastic.js"></script>
+	<script language="Javascript" type="text/javascript">
+    //<![CDATA[
+    google.load("jquery", "1.7.0");
+	google.load("jqueryui", "1.8.16");
+    //]]>
+    </script>
+	<script>
+		$(function() {
+			$('#tabs').tabs({
+				ajaxOptions: {
+					error: function( xhr, status, index, anchor ) {
+						$( anchor.hash ).html(
+							"Couldn't load this tab. We'll try to fix this as soon as possible. " +
+							"If this wouldn't be a demo." );
+					}
+				}
+			});
+		});
+		$(document).ready(function(){
+			$('#switcher').themeswitcher();
+		});
+		
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-27238128-1']);
+		_gaq.push(['_trackPageview']);
+		_gaq.push(['_trackPageLoadTime']);
+
+		(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+	
+  </head>
+  <body>
+	<div class="content">
+		<div id="tabs">
+			<ul>
+				<li><a href="#dynamic-tab">Dynamic Icons</a></li>
+				<li><a href="#qr-tab">QR Codes</a></li>
+				<li><a href="formulas">Formulas</a></li>
+			</ul>
+			<div id="dynamic-tab">
+				<select id="iconType">
+					<option value="bubble">Bubble</option>
+					<option value="pins">Pin</option>
+				</select>
+				<textarea id="content"></textarea>
+				<img id="icon"></img>
+			</div>
+			<div id="qr-tab">
+				<div id="qraccordion">
+					<h3 class="head"><a href="#"><p class="ui-state-default ui-corner-all ui-helper-clearfix" style="padding:4px;">
+	<span class="ui-icon ui-icon-circle-triangle-s" style="float:left; margin:-2px 5px 0 0;"></span>QR Code Attributes</p></a></h3>
+					<div>
+						<div id="qr-encoding">
+							<input type="radio"  id="Shift_JIS" name="qr-encoding" /><label for="Shift_JIS">Shift_JIS</label>
+							<input type="radio"  id="UTF-8" name="qr-encoding" /><label for="UTF-8">UTF-8</label>
+							<input type="radio"  id="ISO-8859-1" name="qr-encoding" /><label for="ISO-8859-1">ISO-8859-1</label>
+						</div>
+						<div id="qr-type">
+							<input type="radio"  id="L" name="qr-type" /><label for="L">L</label>
+							<input type="radio"  id="M" name="qr-type" /><label for="M">M</label>
+							<input type="radio"  id="Q" name="qr-type" /><label for="Q">Q</label>
+							<input type="radio"  id="H" name="qr-type" /><label for="H">H</label>
+						</div>
+						<label>Enter Text for the QR Code</label>
+						<textarea id="qrcontent"></textarea>
+					</div>
+					
+					<h3 class="head"><a href="#"><p class="ui-state-default ui-corner-all ui-helper-clearfix" style="padding:4px;">
+	<span class="ui-icon ui-icon-circle-triangle-s" style="float:left; margin:-2px 5px 0 0;"></span>Size</p></a></h3>
+					<div>
+						<label>Height</label>
+						<input type="text" id="height" value="100"></input>
+						<label>Width</label>
+						<input type="text" id="width" value="100"></input>
+					</div>
+					<h3 class="head"><a href="#"><p class="ui-state-default ui-corner-all ui-helper-clearfix" style="padding:4px;">
+	<span class="ui-icon ui-icon-circle-triangle-s" style="float:left; margin:-2px 5px 0 0;"></span>Fills</p></a></h3>
+					<div>
+						<label for="background">Background</label>
+						<input type="checkbox" id="background" />
+						<div id="qr-background">
+							<input type="radio"  id="s" name="qr-background" /><label for="s">Solid Fill</label>
+							<input type="radio"  id="lg" name="qr-background" /><label for="lg">Linear Gradient</label>
+							<input type="radio"  id="ls" name="qr-background" /><label for="ls">Linear Stripes</label>
+						</div>
+						<div id="qr-s" class="background-selector">
+							<form><input type="text" id="color" name="color" value="#123456" /></form>
+							<div id="colorpicker"></div>
+						</div>
+						<div id="qr-lg" class="background-selector">
+							LLLLLLLLLLLLLLGGGGGGGGGGG
+						</div>
+						<div id="qr-ls" class="background-selector">
+							LLLLLLLLLLLLLLSSSSSSSSSSS
+						</div>
+						<label for="transparency">Transparency</label>
+						<input type="checkbox" id="transparency" />
+						<div id="transparency-slider">
+						</div>
+					</div>
+					<h3 class="head"><a href="#"><p class="ui-state-default ui-corner-all ui-helper-clearfix" style="padding:4px;">
+	<span class="ui-icon ui-icon-circle-triangle-s" style="float:left; margin:-2px 5px 0 0;"></span>Output</p></a></h3>
+					<div>
+						<img id="qr" class="img"></img>
+						<br/>
+						<label>Chart URL</label>
+						<input id="qr" class="url" type='textbox' style="width:450px;"></input>
+						<br/>
+						<label>IMG tag</label>
+						<input id="qr" class="imgurl" type='textbox' style="width:450px;"></input>
+						<a href="#" id="qr" class="download">Download</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="http://jqueryui.com/themeroller/themeswitchertool/"></script>
+	<div id="switcher"></div>
+	<script type="text/javascript">
+		var infolink_pid = 348905;
+		var infolink_wsid = 0;
+	</script>
+	<script type="text/javascript" src="http://resources.infolinks.com/js/infolinks_main.js"></script>
+  </body>
+  <script>
+	//<![CDATA[
+		$('#content').bind("keyup",updateImage);
+		$('#qrcontent').bind("keyup",updateqricon);
+		function updateImage()
+		{
+			$('#icon').attr('src','https://chart.googleapis.com/chart?chst='+$('#iconType').val()+'&chld=ski|bb|'+$('#content').val()+'|FFFFFF|000000');
+		}
+		function updateqricon()
+		{
+			chf = "&chf=bg,"+$('input[name="qr-background"]:checked').attr('id')+",676767";
+			url='https://chart.googleapis.com/chart?cht=qr&chl='+$('#qrcontent').val()+'&choe='+$('input[name="qr-encoding"]:checked').attr('id')+'&chld='+$('input[name="qr-type"]:checked').attr('id')+'&chs='+$('#height').val()+'x'+$('#width').val()+chf;
+			$('#qr.img').attr('src',url);
+			$('#qr.url').val(url);
+			$('#qr.imgurl').val('<img src="'+url+'"></img>');
+		}
+		
+		$(function() {
+			var height = $("#height");
+			var slider = $("<div id='heightslider'></div>").insertAfter( height ).slider({
+				orientation: "vertical",
+				min: 50,
+				max: 300,
+				range: "min",
+				value: height.val(),
+				slide: function( event, ui ) {
+					height.val(ui.value);
+					updateqricon();
+				}
+			});
+			$("#height").change(function() {
+				slider.slider( "value", $(this).val());
+				updateqricon();
+			});
+			var width = $("#width");
+			var widthslider = $("<div id='widthslider' style='width:150px;'></div>").insertAfter( width ).slider({
+				min: 50,
+				max: 300,
+				range: "min",
+				value: width.val(),
+				width: 150,
+				slide: function( event, ui ) {
+					width.val(ui.value);
+					updateqricon();
+				}
+			});
+			$("#width").change(function() {
+				widthslider.slider( "value", $(this).val());
+				updateqricon();
+			});
+			var transparency = $("#transparency-slider");
+			var slider = $("<div id='transparencyslider'></div>").insertAfter(transparency).slider({
+				min: 0,
+				max: 100,
+				range: "min",
+				value: 0,
+				slide: function( event, ui ) {
+					updateqricon();
+				}
+			});
+			$("#transparency-slider").change(function() {
+				slider.slider( "value", $(this).val());
+				updateqricon();
+			});
+			jQuery(document).ready(function(){
+					$('#qraccordion .head').click(function() {
+						$(this).next().toggle('slow');
+						if($(this).find(".ui-icon-circle-triangle-s").first().length>0)
+						{
+							$(this).find(".ui-icon-circle-triangle-s").first().removeClass("ui-icon-circle-triangle-s").addClass("ui-icon-circle-triangle-n");
+						}
+						else
+						{
+							$(this).find(".ui-icon-circle-triangle-n").first().removeClass("ui-icon-circle-triangle-n").addClass("ui-icon-circle-triangle-s");
+						}
+						return false;
+					}).next().hide();
+				});
+			$("#qr-encoding").buttonset();	
+			$("#qr-type").buttonset();	
+			$("#qr-background").buttonset();	
+			$("input[name='qr-encoding'], input[name='qr-type'], input[name='qr-background']").change(function() {
+				updateqricon();
+			});
+			$("input[name='qr-background']").change(function() {
+				current = this.id;
+				$('.background-selector').hide();
+				$('#qr-'+current).show();				
+				updateqricon();
+				
+			});
+			$('.background-selector').hide();
+			$(".download").click(function(e) {
+				e.preventDefault();
+				window.location=$('#'+$(this).attr("id")+'.img').attr('src');
+			});
+			$('#colorpicker').farbtastic('#color');
+		});
+		$(".refresh").button();
+    //]]>
+  </script>
+</html>
