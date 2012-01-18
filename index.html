@@ -1,13 +1,14 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!doctype html>
+<html>
   <head>
     <title>Charter UI - Google Chart Api UI - QR Code Generator</title>
-	<META NAME="Title" CONTENT="Google Chart Api UI">
+	<META NAME="Title" CONTENT="Google Chart Api UI - Google Chart Generator">
 	<META NAME="Description" CONTENT="Friendly UI to use Google Chart Api. Allows generation of QR codes for now. Generation of dynamic icons and formulas in future versions">
-	<META NAME="Keywords" CONTENT="qr code generator, qr code, google chart api">
+	<META NAME="Keywords" CONTENT="google chart generator qr code generator, qr code, google chart api">
 	<META NAME="Language" CONTENT="English">
 	<META NAME="Revisit" CONTENT="1 day">
 	<META NAME="Distribution" CONTENT="Global">
+	<link type="text/css" href="./css/charterui.css" rel="Stylesheet" />
 	<link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css" rel="Stylesheet" />
 	<link rel="stylesheet" href="farbtastic.css" type="text/css" />
 	<script src="https://www.google.com/jsapi?key=ABQIAAAAw8ctUj_tC2zVWs0zqGLhrBST2yNqgneP59yq_A9iLMHxfT2EFBRnceqU1J_m-63pkyh_6rvmBHvIfQ" type="text/javascript"></script>
@@ -48,11 +49,14 @@
 	
   </head>
   <body>
+	<header class="ui-corner-all">
+		<h1>CharterUI</h1>
+	</header>
 	<div class="content">
 		<div id="tabs">
 			<ul>
-				<li><a href="#dynamic-tab">Dynamic Icons</a></li>
 				<li><a href="#qr-tab">QR Codes</a></li>
+				<li><a href="#dynamic-tab">Dynamic Icons</a></li>
 				<li><a href="formulas">Formulas</a></li>
 			</ul>
 			<div id="dynamic-tab">
