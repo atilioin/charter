@@ -249,6 +249,7 @@ jQuery._farbtastic = function (container, callback) {
         if (this.value && this.value != fb.color) {
           this.value = fb.color;
         }
+		$(this).trigger('change');
       });
     }
     else if (typeof fb.callback == 'function') {
